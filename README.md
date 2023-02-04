@@ -1,7 +1,8 @@
 # Bit Collector
 
 Bit Collector consists of two projects, there is the bot project that talks with Discord directly and provides the players information by
-talking with the express backend.
+talking with the express backend. I also have configured an nginx container to route all requests to /webhooks/ to proxy them to the express application,
+without exposing internal routes used by the bot to the whole internet.
 
 Both the bot and express server are currently deployed on an AWS Lightsail ubuntu instance, and you can use the bot in Discord.
 If you want to test the bot, you can join this Discord server: https://discord.gg/p7W9ZEXYup
