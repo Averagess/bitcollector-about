@@ -24,5 +24,7 @@ To use the dashboard, you need to sign in with admin credentials.
 ## Deploying an own copy of the bot
 To deploy an copy of the project, you can use Docker compose.
 - First clone both the bitcollector-server and bitcollector-bot in an empty directory
-- Then you need to make an docker-compose.yaml file at the root of both projects.
-- Populate the docker compose file with this AND replace the values surrounded with <>
+- Then clone the docker-compose.yaml and nginx.conf files from this repository
+- Replace all values surrounded with <> with your own properties
+- Run docker compose up
+- Bot and express application should now be running correctly in docker
