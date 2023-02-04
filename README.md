@@ -6,7 +6,8 @@ without exposing internal routes used by the bot to the whole internet.
 
 Both the bot and express server are currently deployed on an AWS Lightsail ubuntu instance, and you can use the bot in Discord.
 If you want to test the bot, you can join this Discord server: https://discord.gg/p7W9ZEXYup
-To use the bots commands, you can write /help on an channel and the bot responds with all the current usable commands
+To use the bots commands, you can write /help on an channel and the bot responds with all the current usable commands.
+If you want to check out the source code for these projects, just click the names of the repositories and they will take you to the project repository page.
 
 ## [bitcollector-server](https://github.com/Averagess/bitcollector-server)
 This project contains the express backend, that talks with the mongo database, and relays the information to the bot
