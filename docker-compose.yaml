@@ -1,0 +1,49 @@
+services:
+  bot:
+    image: bitcollector-bot
+    depends_on:
+      - backend
+    build:
+      context: ./BitCollector-Bot
+      dockerfile: Dockerfile
+    environment:
+      - DISCORD_TOKEN=<YOUR DISCORD BOT TOKEN>
+      - GUILD_ID=<GUILD ID FOR TESTING COMMANDS>
+      - CLIENT_ID=<BOTS CLIENT ID>
+      - BACKEND_URL=http://backend:3000/api
+      - APIKEY=<API KEY FOR AUTHENTICATING BOT'S REQUESTS WITH EXPRESS BACKEND>
+      - NODE_ENV=production
+    volumes:
+      [ discord_logs:/src/bot/logs/. ]
+    container_name: discordbot
+  backend:
+    image: bitcollector-server
+    build:
+      context: ./BitCollector-Server
+      dockerfile: Dockerfile
+    environment:
+      - PORT=3000
+      - MONGODB_URI=<MONGODB URI>
+      - NODE_ENV=production
+      - ADMIN_USERNAME=<ADMIN_USERNAME THAT IS ACCEPTED FOR LOGGING IN FROM DASHBOARD>
+      - ADMIN_PASSWORD=<ADMIN_PASSWORD THAT IS ACCEPTED FOR LOGGING IN FROM DASHBOARD>
+      - ADMIN_TOKEN=<ADMIN_TOKEN THAT AUTHENTICATES REQUESTS FROM DASHBOARD>
+      - BOT_TOKEN=<THIS SHOULD BE THE SAME AS APIKEY FROM THE BOT'S ENVIRONMENT VARIABLES>
+    volumes:
+      - express_logs:/src/server/logs/.
+    ports: 
+      - 127.0.0.1:4000:3000
+    container_name: backend
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - bot
+    container_name: nginx
+volumes:
+  express_logs:
+  discord_logs:
