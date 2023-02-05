@@ -14,7 +14,7 @@ services:
       - APIKEY=<API KEY FOR AUTHENTICATING BOT'S REQUESTS WITH EXPRESS BACKEND>
       - NODE_ENV=production
     volumes:
-      [ discord_logs:/src/bot/logs/. ]
+      - discord_logs:/usr/src/bot/logs 
     container_name: discordbot
   backend:
     image: bitcollector-server
@@ -30,7 +30,7 @@ services:
       - ADMIN_TOKEN=<ADMIN_TOKEN THAT AUTHENTICATES REQUESTS FROM DASHBOARD>
       - BOT_TOKEN=<THIS SHOULD BE THE SAME AS APIKEY FROM THE BOT'S ENVIRONMENT VARIABLES>
     volumes:
-      - express_logs:/src/server/logs/.
+      - express_logs:/usr/src/server/logs
     ports: 
       - 127.0.0.1:4000:3000
     container_name: backend
