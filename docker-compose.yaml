@@ -4,7 +4,7 @@ services:
     depends_on:
       - backend
     build:
-      context: ./BitCollector-Bot
+      context: ./bitcollector-bot
       dockerfile: Dockerfile
     environment:
       - DISCORD_TOKEN=<YOUR DISCORD BOT TOKEN>
@@ -19,7 +19,7 @@ services:
   backend:
     image: bitcollector-server
     build:
-      context: ./BitCollector-Server
+      context: ./bitcollector-server
       dockerfile: Dockerfile
     environment:
       - PORT=3000
@@ -31,7 +31,7 @@ services:
       - BOT_TOKEN=<THIS SHOULD BE THE SAME AS APIKEY FROM THE BOT'S ENVIRONMENT VARIABLES>
     volumes:
       - express_logs:/usr/src/server/logs
-    ports: 
+    ports:
       - 127.0.0.1:4000:3000
     container_name: backend
   nginx:
