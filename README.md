@@ -11,7 +11,9 @@ When the limit exceeds, redis evicts any keys that match this redis key eviction
 
 `allkeys-lru: Keeps most recently used keys; removes least recently used (LRU) keys`
 
-The whole project is currently deployed on an [AWS Lightsail Ubuntu instance](http://3.73.209.127:8080/), and you can use the bot in Discord.
+Dashboard here: [http://3.73.209.127:8080/](http://3.73.209.127:8080/)
+
+The whole project is currently deployed on an AWS Lightsail Ubuntu instance, and you can use the bot in Discord.
 If you want to test the bot, you can join this Discord server: https://discord.gg/p7W9ZEXYup
 To use the bots commands, you can write /help on an channel and the bot responds with all the current usable commands.
 If you want to check out the source code for these projects, just click the names of the repositories below and they will take you to the project repository page.
