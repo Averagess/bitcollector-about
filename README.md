@@ -1,16 +1,15 @@
 # Bit Collector
 
-Bit Collector consists of two projects, there is the bot project that talks with the Discord API directly and provides the players information by
-talking with the express backend. I also have configured nginx to work as an reverse proxy to redirect requests to express backend, and it works as an ratelimiter currently too.
+Bit Collector consists of three projects, There's the bot, that talks directly with Discord API and our express backend. Then there is the express backend, that talks with MongoDB and our local redis cache. Then for the admin of the bot, there is the dashboard that can currently show all the players that we have and edit an single player's data with an player editor. I also have configured nginx to work as an reverse proxy to redirect requests to express backend, and it works as an ratelimiter currently too.
 
-I have also implemented some caching with redis, with an memory limit of 200mb.
-When the limit exceeds, redis evicts any keys that have according to this redis key eviction policy that i use:
+I have implemented the caching with redis, with an memory limit of 200mb.
+When the limit exceeds, redis evicts any keys that match this redis key eviction policy:
 `allkeys-lru: Keeps most recently used keys; removes least recently used (LRU) keys`
 
 Both the bot and express server are currently deployed on an AWS Lightsail Ubuntu instance, and you can use the bot in Discord.
 If you want to test the bot, you can join this Discord server: https://discord.gg/p7W9ZEXYup
 To use the bots commands, you can write /help on an channel and the bot responds with all the current usable commands.
-If you want to check out the source code for these projects, just click the names of the repositories and they will take you to the project repository page.
+If you want to check out the source code for these projects, just click the names of the repositories below and they will take you to the project repository page.
 
 ## [bitcollector-server](https://github.com/Averagess/bitcollector-server)
 This project contains the express backend, that talks with the mongo database and redis cache, and relays the information to the bot
