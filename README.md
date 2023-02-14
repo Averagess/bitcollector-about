@@ -30,6 +30,14 @@ To use the dashboard, you need to sign in with admin credentials.
 To deploy an copy of the project, you can use Docker compose.
 - First clone both the bitcollector-server and bitcollector-bot in an empty directory, like "bitcollector"
 - Then clone the docker-compose.yaml and nginx.conf files from this repository to that empty directory that has both the server and bot in it
-- Replace all values surrounded with <> with your own properties
+- Edit the docker-compose.yaml file and replace all values surrounded with <> with your own properties
 - Run docker compose up
 - Bot, express, redis, nginx should now be running correctly in Docker compose
+
+By default, the express server doesnt serve any static content. To serve the dashboard you need to do this:
+- Pull the bitcollector-dashboard project to the root directory where the bot and server are.
+- CD into this directory, and install dependencies
+- Run the build script inside package.json `npm run build`
+- Copy the contents of dist/ directory into the bitcollector-server/public/ directory
+- run `docker compose down && docker compose up --build` in the root directory of all the 3 projects
+- express should now be serving the dashboard
