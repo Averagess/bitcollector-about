@@ -1,6 +1,6 @@
 # Bit Collector
 
-Bit Collector consists of three projects, There's the bot, that talks directly with Discord API and our express backend. Then there is the express backend, that talks with MongoDB and our local redis cache. Then for the admin of the bot, there is the dashboard that can currently show all the players that we have and edit an single player's data with an player editor. I also have configured nginx to work as an reverse proxy to redirect requests to express backend, and it works as an ratelimiter currently too.
+Bit Collector consists of three projects, There's the bot, that talks directly with Discord API and our express backend. Then there is the express backend, that talks with the bot, MongoDB and our local redis cache. Then for the admin of the bot, there is the dashboard that can currently show all the players that we have and edit an single player's data with an player editor. I also have configured nginx to work as an reverse proxy to redirect requests to express backend, and it works as an ratelimiter currently too.
 
 I have implemented the caching with redis, with an memory limit of 200mb.
 When the limit exceeds, redis evicts any keys that match this redis key eviction policy:
