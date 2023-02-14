@@ -1,16 +1,19 @@
 # Bit Collector
 
-Bit Collector consists of two projects, there is the bot project that talks with Discord directly and provides the players information by
-talking with the express backend. I also have configured an nginx container to route all requests to /webhooks/ to proxy them to the express application,
-without exposing internal routes used by the bot to the whole internet.
+Bit Collector consists of two projects, there is the bot project that talks with the Discord API directly and provides the players information by
+talking with the express backend. I also have configured nginx to work as an reverse proxy to redirect requests to express backend, and it works as an ratelimiter currently too.
 
-Both the bot and express server are currently deployed on an AWS Lightsail ubuntu instance, and you can use the bot in Discord.
+I have also implemented some caching with redis, with an memory limit of 200mb.
+When the limit exceeds, redis evicts any keys that have according to the eviction policy:
+`allkeys-lru: Keeps most recently used keys; removes least recently used (LRU) keys`
+
+Both the bot and express server are currently deployed on an AWS Lightsail Ubuntu instance, and you can use the bot in Discord.
 If you want to test the bot, you can join this Discord server: https://discord.gg/p7W9ZEXYup
 To use the bots commands, you can write /help on an channel and the bot responds with all the current usable commands.
 If you want to check out the source code for these projects, just click the names of the repositories and they will take you to the project repository page.
 
 ## [bitcollector-server](https://github.com/Averagess/bitcollector-server)
-This project contains the express backend, that talks with the mongo database, and relays the information to the bot
+This project contains the express backend, that talks with the mongo database and redis cache, and relays the information to the bot
 from different endpoints. Endpoints are tested with jest and supertest, and every PR currently is tested and linted with GitHub actions.
 The server has some webhooks too, so we can receive some voting events, done on some websites that list Discord bots, if an player
 votes on these websites, they receive an crate that they can unbox for virtual rewards.
@@ -25,8 +28,8 @@ To use the dashboard, you need to sign in with admin credentials.
 
 ## Deploying an own copy of the bot
 To deploy an copy of the project, you can use Docker compose.
-- First clone both the bitcollector-server and bitcollector-bot in an empty directory
-- Then clone the docker-compose.yaml and nginx.conf files from this repository
+- First clone both the bitcollector-server and bitcollector-bot in an empty directory, like "bitcollector"
+- Then clone the docker-compose.yaml and nginx.conf files from this repository to that empty directory that has both the server and bot in it
 - Replace all values surrounded with <> with your own properties
 - Run docker compose up
-- Bot and express application should now be running correctly in docker
+- Bot, express, redis, nginx should now be running correctly in Docker compose
