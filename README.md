@@ -1,12 +1,17 @@
 # Bit Collector
 
+## What is it?
+Bit Collector is an economy Discord bot, players have their own account, and can increase their balance by buying items that increase their accounts balance
+per second. Players can compare their accounts between their own and someone elses, and theres an leaderboard that has the top 10 biggest accounts.
+
 Bit Collector consists of three projects, There's the bot, that talks directly with Discord API and our express backend. Then there is the express backend, that talks with the bot, MongoDB and our local redis cache. Then for the admin of the bot, there is the dashboard that can currently show all the players that we have and edit an single player's data with an player editor. I also have configured nginx to work as an reverse proxy to redirect requests to express backend, and it works as an ratelimiter currently too.
 
 I have implemented the caching with redis, with an memory limit of 200mb.
 When the limit exceeds, redis evicts any keys that match this redis key eviction policy:
+
 `allkeys-lru: Keeps most recently used keys; removes least recently used (LRU) keys`
 
-Both the bot and express server are currently deployed on an AWS Lightsail Ubuntu instance, and you can use the bot in Discord.
+The whole project is currently deployed on an [AWS Lightsail Ubuntu instance](http://3.73.209.127:8080/), and you can use the bot in Discord.
 If you want to test the bot, you can join this Discord server: https://discord.gg/p7W9ZEXYup
 To use the bots commands, you can write /help on an channel and the bot responds with all the current usable commands.
 If you want to check out the source code for these projects, just click the names of the repositories below and they will take you to the project repository page.
