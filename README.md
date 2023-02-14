@@ -4,7 +4,7 @@ Bit Collector consists of two projects, there is the bot project that talks with
 talking with the express backend. I also have configured nginx to work as an reverse proxy to redirect requests to express backend, and it works as an ratelimiter currently too.
 
 I have also implemented some caching with redis, with an memory limit of 200mb.
-When the limit exceeds, redis evicts any keys that have according to this redis eviction policy that i use:
+When the limit exceeds, redis evicts any keys that have according to this redis key eviction policy that i use:
 `allkeys-lru: Keeps most recently used keys; removes least recently used (LRU) keys`
 
 Both the bot and express server are currently deployed on an AWS Lightsail Ubuntu instance, and you can use the bot in Discord.
