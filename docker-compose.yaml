@@ -14,9 +14,11 @@ services:
       - APIKEY=<API KEY FOR AUTHENTICATING BOT'S REQUESTS WITH EXPRESS BACKEND>
       - NODE_ENV=production
     volumes:
-      - discord_logs:/usr/src/bot/logs 
+      - discord_logs:/usr/src/bot/logs
     container_name: discordbot
   backend:
+    depends_on:
+      - redis
     image: bitcollector-server
     build:
       context: ./bitcollector-server
@@ -29,11 +31,18 @@ services:
       - ADMIN_PASSWORD=<ADMIN_PASSWORD THAT IS ACCEPTED FOR LOGGING IN FROM DASHBOARD>
       - ADMIN_TOKEN=<ADMIN_TOKEN THAT AUTHENTICATES REQUESTS FROM DASHBOARD>
       - BOT_TOKEN=<THIS SHOULD BE THE SAME AS APIKEY FROM THE BOT'S ENVIRONMENT VARIABLES>
+      - REDIS_URL=redis://redis:6379
     volumes:
       - express_logs:/usr/src/server/logs
     ports:
       - 127.0.0.1:4000:3000
     container_name: backend
+  redis:
+    image: redis:latest
+    ports:
+      - 127.0.0.1:6379:6379
+    container_name: redis
+    command: redis-server --maxmemory-policy allkeys-lru --maxmemory 200mb
   nginx:
     image: nginx:latest
     ports:
