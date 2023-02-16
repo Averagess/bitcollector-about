@@ -32,7 +32,7 @@ services:
       - ADMIN_TOKEN=<ADMIN_TOKEN THAT AUTHENTICATES REQUESTS FROM DASHBOARD>
       - BOT_TOKEN=<THIS SHOULD BE THE SAME AS APIKEY FROM THE BOT'S ENVIRONMENT VARIABLES>
       - REDIS_URL=redis://redis:6379
-      - ENABLE_ANALYTIC_SENDING=<boolean> #You might now want to enable this if your bot isnt listed on Discord bot sites
+      - ENABLE_ANALYTIC_SENDING=<boolean> #You might not want to enable this if your bot isnt listed on Discord bot sites
      # Same with the following, leave them as commented if you dont use the upper value
      #- BOT_ID=<Your bots Discord ID, its the same as CLIENT_ID in Bots environment variables>
      #- DISCORDBOTLIST_TOKEN=<Token for authenticating with DISCORDBOTLIST>
