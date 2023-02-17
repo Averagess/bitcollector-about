@@ -38,6 +38,7 @@ services:
      #- DISCORDBOTLIST_TOKEN=<Token for authenticating with DISCORDBOTLIST>
      #- DISCORDS_TOKEN=<Token for authenticating with DISCORDS>
      #- TOPGG_TOKEN=<Token for authenticating with TOPGG>
+     #- DISCORDBOTS_TOKEN=<Token for authenticating with Discord bots>
     volumes:
       - express_logs:/usr/src/server/logs
     ports:
