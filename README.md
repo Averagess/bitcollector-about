@@ -18,6 +18,9 @@ If you want to check out the source code for these projects, just click the name
 
 Dashboard here: [http://3.73.209.127:8080/](http://3.73.209.127:8080/)
 
+## Hours document
+[Link to the hours.md file](../main/hours.md)
+
 ## Development environment
 If you are planning to develop this project in an development environment, you might need to use yarn for package management, and check that you are using the correct node version
 
